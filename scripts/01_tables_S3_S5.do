@@ -3,7 +3,7 @@
 * Data: data/processed/processed_data.csv
 * Outputs: outputs/tables/supplementary/Table_S3.tex ... S5
 *******************************************************
-version 16.0
+version 15.0
 clear all
 set more off
 
