@@ -12,8 +12,8 @@ climate-PI-tables/
 ├── outputs/
 │   ├── logs/
 │   ├── tables/
-│   │   ├── manuscript/               # Table1.tex
-│   │   └── supplementary/            # Table_S3.tex, Table_S4.tex, Table_S5.tex
+│   │   ├── manuscript/               
+│   │   └── supplementary/            
 │   └── derived/
 │       └── coefficients/             # Coefficients for figures (optional)
 └── scripts/
