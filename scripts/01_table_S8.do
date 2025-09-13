@@ -6,7 +6,7 @@
 *   - outputs/tables/supplementary/Table_S8.tex
 *   - outputs/derived/coefficients/coefficients_for_figures_bins.csv
 *******************************************************
-version 16.0
+version 15.0
 clear all
 set more off
 
@@ -203,3 +203,4 @@ foreach S in pct eq sd {
 use `coef_all', clear
 export delimited using "outputs/derived/coefficients/coefficients_for_figures_bins.csv", replace
 *******************************************************
+
