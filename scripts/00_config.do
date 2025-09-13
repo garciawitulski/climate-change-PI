@@ -1,7 +1,7 @@
 *******************************************************
 * 00_config.do — project setup (portable paths)
 *******************************************************
-version 16.0
+version 15.0
 clear all
 set more off
 
