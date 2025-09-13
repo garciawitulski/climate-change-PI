@@ -18,7 +18,7 @@ climate-PI-tables/
 │       └── coefficients/             # Coefficients for figures (optional)
 └── scripts/
     ├── 00_config.do
-    ├── 01_table1_manuscript.do
+    ├── 01_table1.do
     ├── 02_tables_S2.do
     ├── 03_tables_S3_S5.do
     ├── 04_table_S6.do
@@ -37,13 +37,13 @@ climate-PI-tables/
 3. Run:
    ```stata
    do "scripts/00_config.do"
+   do "scripts/01_table1.do"
    do "scripts/01_tables_S2.do"
    do "scripts/01_tables_S3_S5.do"
    do "scripts/01_table_S6.do"
    do "scripts/01_table_S7.do"
    do "scripts/01_table_S8.do"
-   do "scripts/01_tables_S9_S10.do"
-   do "scripts/02_table1_manuscript.do"
+   do "scripts/02_tables_S9_S10.do"
    ```
 
 Outputs will appear in `outputs/tables/`.
