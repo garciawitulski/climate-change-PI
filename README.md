@@ -36,9 +36,14 @@ climate-PI-tables/
 2. Place your processed dataset at `data/processed/processed_data.csv`.
 3. Run:
    ```stata
-   do scripts/00_config.do
-   do scripts/01_tables_S3_S5.do
-   do scripts/02_table1_manuscript.do
+   do "scripts/00_config.do"
+   do "scripts/01_tables_S2.do"
+   do "scripts/01_tables_S3_S5.do"
+   do "scripts/01_table_S6.do"
+   do "scripts/01_table_S7.do"
+   do "scripts/01_table_S8.do"
+   do "scripts/01_tables_S9_S10.do"
+   do "scripts/02_table1_manuscript.do"
    ```
 
 Outputs will appear in `outputs/tables/`.
