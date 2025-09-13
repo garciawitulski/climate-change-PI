@@ -5,7 +5,7 @@
 *   - outputs/derived/descriptives_summary.csv
 *****************************************************
 
-version 16.0
+version 15.0
 clear all
 set more off
 
@@ -213,3 +213,4 @@ esttab using "outputs/tables/supplementary/Table_S2.tex", append ///
 
 display as result "Done: outputs/tables/supplementary/Table_S2.tex"
 *****************************************************
+
