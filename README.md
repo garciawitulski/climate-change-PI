@@ -19,7 +19,7 @@ climate-PI-tables/
 └── scripts/
     ├── 00_config.do
     ├── 01_table1.do
-    ├── 02_tables_S2.do
+    ├── 02_table_S2.do
     ├── 03_tables_S3_S5.do
     ├── 04_table_S6.do
     ├── 05_table_S7.do
@@ -38,7 +38,7 @@ climate-PI-tables/
    ```stata
    do "scripts/00_config.do"
    do "scripts/01_table1.do"
-   do "scripts/01_tables_S2.do"
+   do "scripts/01_table_S2.do"
    do "scripts/01_tables_S3_S5.do"
    do "scripts/01_table_S6.do"
    do "scripts/01_table_S7.do"
