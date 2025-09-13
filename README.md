@@ -23,7 +23,7 @@ climate-PI-tables/
 ```
 
 ## Requirements
-- Stata 16+ (tested with 17/18)
+- Stata 15+ 
 - SSC package `estout` (for `eststo/esttab`)
 
 ## How to run
