@@ -6,7 +6,7 @@
 *   - outputs/tables/supplementary/Table_S6.tex
 *   - outputs/derived/coefficients/coefficients_for_figures_income.csv
 *******************************************************
-version 16.0
+version 15.0
 clear all
 set more off
 
@@ -157,3 +157,4 @@ _append_coef "HICs"  `hic_cond'
 use `coef_all', clear
 export delimited using "outputs/derived/coefficients/coefficients_for_figures_income.csv", replace
 *******************************************************
+
