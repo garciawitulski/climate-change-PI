@@ -1,6 +1,6 @@
 # Climate change impacts on physical inactivity: A panel data study of global warming across 156 countries from 2000 to 2022
 
-Reproducible Stata code to generate the **manuscript Table 1** and **Supplementary Tables S3–S5** for the study on climate change and physical inactivity (2000–2022).
+Reproducible Stata code to generate the **manuscript Table 1** and **Supplementary Tables S3–S10** for the study on climate change and physical inactivity (2000–2022).
 
 ## Structure
 ```
