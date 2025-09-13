@@ -18,13 +18,13 @@ climate-PI-tables/
 │       └── coefficients/             # Coefficients for figures (optional)
 └── scripts/
     ├── 00_config.do
-    ├── 01_tables_S3_S5.do
-    ├── 02_table1_manuscript.do
     ├── 01_tables_S2.do
+    ├── 01_tables_S3_S5.do
     ├── 01_table_S6.do
     ├── 01_table_S7.do
     ├── 01_table_S8.do
     ├── 01_tables_S9_S10.do
+    ├── 02_table1_manuscript.do
 ```
 
 ## Requirements
