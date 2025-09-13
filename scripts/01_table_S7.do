@@ -6,7 +6,7 @@
 *   - outputs/tables/supplementary/Table_S7.tex
 *   - outputs/derived/coefficients/coefficients_for_figures_regions.csv
 *******************************************************
-version 16.0
+version 15.0
 clear all
 set more off
 
@@ -177,3 +177,4 @@ forvalues r = 1/5 {
 use `coef_all', clear
 export delimited using "outputs/derived/coefficients/coefficients_for_figures_regions.csv", replace
 *******************************************************
+
