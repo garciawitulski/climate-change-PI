@@ -4,7 +4,7 @@
 * Output: outputs/tables/manuscript/Table1.tex
 *         outputs/derived/table1_values.csv
 *******************************************************
-version 16.0
+version 15.0
 clear all
 set more off
 
@@ -136,3 +136,4 @@ restore
 
 di as result "Table1.tex y table1_values.csv generados."
 *******************************************************
+
