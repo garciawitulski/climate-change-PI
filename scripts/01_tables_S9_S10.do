@@ -7,7 +7,7 @@
 *   - outputs/derived/estimates_by_country.csv               (S10 data)
 *   - outputs/tables/supplementary/Table_S10.tex             (S10 LaTeX summary)
 *******************************************************
-version 16.0
+version 15.0
 clear all
 set more off
 
@@ -236,3 +236,4 @@ restore
 
 di as result "Done: Table_S9.tex, Table_S10.tex, and the two CSVs were written to outputs/."
 *******************************************************
+
