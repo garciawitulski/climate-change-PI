@@ -4,7 +4,6 @@
 * Data: data/processed/processed_data.csv
 * Outputs:
 *   - outputs/tables/supplementary/Table_S6.tex
-*   - outputs/derived/coefficients/coefficients_for_figures_income.csv
 *******************************************************
 version 15.0
 clear all
@@ -118,4 +117,5 @@ esttab m_lmic m_hic using "outputs/tables/supplementary/Table_S6.tex", replace /
     prehead("\begin{table}[H]\n\centering\n\caption{Results by income group — Outcome: Age-standardized physical inactivity (pi0), 2000–2022}\n\begin{tabular}{lcc}\n\toprule") ///
     prefoot("\midrule") ///
     postfoot("\bottomrule\n\\end{tabular}\n\\begin{minipage}{0.95\\textwidth}\n\\footnotesize\\textit{Notes:} Fully adjusted country fixed-effects models with country-specific linear trends; standard errors clustered by country. LMICs include lower-middle, upper-middle, and low-income categories; HICs include high-income (OECD and nonOECD). Significance: * p<0.10, ** p<0.05, *** p<0.01.\n\\end{minipage}\n\\end{table}")
+
 
