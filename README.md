@@ -8,15 +8,19 @@ climate-PI-tables/
 ├── data/
 │   ├── raw/
 │   └── processed/
-│       └── processed_data.csv        # << Place your processed dataset here
-|       └── mortality_costs.csv
+│       ├── processed_data.csv        
+│       └── mortality_costs.csv       
+|       └── coefficients_for_figures_PI0
+|       └── coefficients_for_figures_PI1
+|       └── coefficients_for_figures_PI2
 ├── outputs/
 │   ├── logs/
 │   ├── tables/
-│   │   ├── manuscript/               
-│   │   └── supplementary/            
-│   └── derived/
-│       └── coefficients/             # Coefficients for figures (optional)
+│   │   ├── manuscript/
+│   │   └── supplementary/
+│   ├── derived/
+│   │   └── coefficients/
+│   └── figures/
 └── scripts/
     ├── 00_config.do
     ├── 01_table1.do
@@ -26,6 +30,8 @@ climate-PI-tables/
     ├── 05_table_S7.do
     ├── 06_table_S8.do
     ├── 07_tables_S9_S10.do
+    └── 08_Fig1.R
+
 ```
 
 ## Requirements
