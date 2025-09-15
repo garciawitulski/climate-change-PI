@@ -9,6 +9,7 @@ climate-PI-tables/
 │   ├── raw/
 │   └── processed/
 │       └── processed_data.csv        # << Place your processed dataset here
+|       └── mortality_costs.csv
 ├── outputs/
 │   ├── logs/
 │   ├── tables/
