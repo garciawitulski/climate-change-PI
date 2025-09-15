@@ -1,5 +1,5 @@
 *******************************************************
-* 08_table1_manuscript.do — Manuscript Table 1
+* 01_table1.do — Manuscript Table 1
 * Input : data/processed/mortality_costs.csv
 * Output: outputs/tables/manuscript/Table1.tex
 *         outputs/derived/table1_values.csv
@@ -128,4 +128,5 @@ file close `fh'
 
 di as result "Table1.tex y table1_values.csv generados."
 *******************************************************
+
 
