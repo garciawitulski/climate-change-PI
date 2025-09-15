@@ -1,5 +1,5 @@
 *****************************************************
-* 07_table_S2.do  —  Descriptive statistics (2000–2022)
+* 02_table_S2.do  —  Descriptive statistics (2000–2022)
 * Outputs:
 *   - outputs/tables/supplementary/Table_S2.tex
 *   - outputs/derived/descriptives_summary.csv
@@ -213,4 +213,5 @@ esttab using "outputs/tables/supplementary/Table_S2.tex", append ///
 
 display as result "Done: outputs/tables/supplementary/Table_S2.tex"
 *****************************************************
+
 
