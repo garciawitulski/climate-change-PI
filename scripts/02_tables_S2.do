@@ -1,8 +1,7 @@
 *****************************************************
 * 02_tables_S2.do — Descriptive stats table         *
-* Author: Christian García-Witulski                 *
-* Date: 2025-09-15                                  *
-*****************************************************
+* Data: data/processed/processed_data.csv           *
+* Outputs: outputs/tables/supplementary/Table_S2.tex*
 
 version 15.0
 clear all
