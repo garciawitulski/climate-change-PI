@@ -27,9 +27,9 @@ input_dir  <- file.path("outputs", "derived", "coefficients")
 output_dir <- file.path("outputs", "figures")
 
 file_list <- file.path(input_dir, c(
-  "C:\\Users\\admin\Documents\\Papers\\Climate change and Physical inactivity\\coefficients_for_figures_PI0.csv",
-  "C:\\Users\\admin\Documents\\Papers\\Climate change and Physical inactivity\\coefficients_for_figures_PI1.csv",
-  "C:\\Users\\admin\Documents\\Papers\\Climate change and Physical inactivity\\coefficients_for_figures_PI2.csv"
+  "coefficients_for_figures_PI0.csv",
+  "coefficients_for_figures_PI1.csv",
+  "coefficients_for_figures_PI2.csv"
 ))
 
 output_names <- file.path(output_dir, c("Fig1.tex", "FigS1.tex", "FigS2.tex"))
@@ -141,3 +141,4 @@ for (i in seq_along(file_list)) {
 }
 
 message("Done. LaTeX figures written to: ", output_dir)
+
