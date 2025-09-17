@@ -35,12 +35,10 @@ foreach v in gdp country_standard totdeathspi totecost {
     }
 }
 
-egen GDP_sum = sum(gdp), by(ssp)
-gen pct_gdp = 10000 * totecost / GDP_sum
 
 * --- Totales por escenario ---
 
-collapse (first) totdeathspi totecost pct_gdp, by(ssp)
+collapse (first) totdeathspi totecost, by(ssp)
 
 * Orden canónico
 gen ord = .
@@ -130,6 +128,7 @@ file close `fh'
 
 di as result "Table1.tex y table1_values.csv generados."
 *******************************************************
+
 
 
 
