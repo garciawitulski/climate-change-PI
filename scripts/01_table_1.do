@@ -84,11 +84,11 @@ quietly summarize losses_bil if ord==3, meanonly
 local L3 : display %4.2f r(mean)
 
 quietly summarize loss_vsGGHED if ord==1, meanonly
-local G1 : display %6.3f r(mean)
+local G1 : display %7.4f r(mean)
 quietly summarize loss_vsGGHED if ord==2, meanonly
-local G2 : display %6.3f r(mean)
+local G2 : display %7.4f r(mean)
 quietly summarize loss_vsGGHED if ord==3, meanonly
-local G3 : display %6.3f r(mean)
+local G3 : display %7.4f r(mean)
 
 quietly summarize deaths_vs2008 if ord==1, meanonly
 local R1 : display %4.1f r(mean)
@@ -117,19 +117,20 @@ file write `fh' "Projected deaths (persons) & `D1' & `D2' & `D3' \\" _n
 * Fila 2
 file write `fh' "Projected economic losses (USD, billions) & `L1' & `L2' & `L3' \\" _n
 * Fila 3
-file write `fh' "Projected economic losses (vs. global GGHED, \%) & `G1' & `G2' & `G3' \\" _n
+file write `fh' "Projected economic losses (vs. global GGHE-D, \%) & `G1' & `G2' & `G3' \\" _n
 file write `fh' "\addlinespace \multicolumn{4}{l}{\textit{Benchmark comparisons}} \\" _n
 * Fila 4
 file write `fh' "Projected deaths vs. 2008 premature deaths (\%) & `R1' & `R2' & `R3' \\" _n
 * Fila 5
 file write `fh' "Projected economic losses vs. 2013 productivity losses (\%) & `P1' & `P2' & `P3' \\" _n
 file write `fh' "\bottomrule" _n "\end{tabular}" _n
-file write `fh' "\begin{minipage}{0.95\textwidth}\footnotesize\textit{Notes:} Totals sum across countries. Economic losses valued under a friction-cost approach. Percent of GDP computed as losses divided by the sum of country GDP (variable \texttt{GDP}) in the dataset. Benchmarks: 5.3 million PI-attributable deaths (2008) and US\$13.7 billion productivity losses (2013). \end{minipage}" _n
+file write `fh' "\begin{minipage}{0.95\textwidth}\footnotesize\textit{Notes:} Totals sum across countries. Economic losses valued under a friction-cost approach. Percent of GGHE-D computed as losses divided by the sum of Domestic General Government Health Expenditure (GGHE-D). Benchmarks: 5.3 million PI-attributable deaths (2008) and US\$13.7 billion productivity losses (2013). \end{minipage}" _n
 file write `fh' "\end{table}" _n
 file close `fh'
 
 di as result "Table1.tex y table1_values.csv generados."
 *******************************************************
+
 
 
 
