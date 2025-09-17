@@ -56,15 +56,17 @@ gen losses_bil = totecost/1e9
 * Benchmarks (constantes del manuscrito)
 scalar BASE_DEATHS_2008 = 5.3e6
 scalar BASE_LOSS_2013   = 13.7e9
+scalar BASE_GGHED       = 21218463744
 
 gen deaths_vs2008 = 100 * totdeathspi / BASE_DEATHS_2008
 gen loss_vs2013   = 100 * totecost   / BASE_LOSS_2013
+gen loss_vsGGHED   = 100 * totecost   / BASE_GGHED
 
 * Etiquetas legibles
 gen ssp_label = cond(ssp=="ssp126","SSP1-2.6", cond(ssp=="ssp245","SSP2-4.5","SSP5-8.5"))
 
 * Export CSV auxiliar
-order ssp ssp_label totdeathspi losses_bil pct_gdp deaths_vs2008 loss_vs2013
+order ssp ssp_label totdeathspi losses_bil loss_vsGGHED deaths_vs2008 loss_vs2013 
 export delimited using "`OUT_CSV'", replace
 
 quietly summarize totdeathspi if ord==1, meanonly
@@ -81,11 +83,11 @@ local L2 : display %4.2f r(mean)
 quietly summarize losses_bil if ord==3, meanonly
 local L3 : display %4.2f r(mean)
 
-quietly summarize pct_gdp if ord==1, meanonly
+quietly summarize loss_vsGGHED if ord==1, meanonly
 local G1 : display %6.3f r(mean)
-quietly summarize pct_gdp if ord==2, meanonly
+quietly summarize loss_vsGGHED if ord==2, meanonly
 local G2 : display %6.3f r(mean)
-quietly summarize pct_gdp if ord==3, meanonly
+quietly summarize loss_vsGGHED if ord==3, meanonly
 local G3 : display %6.3f r(mean)
 
 quietly summarize deaths_vs2008 if ord==1, meanonly
@@ -128,5 +130,6 @@ file close `fh'
 
 di as result "Table1.tex y table1_values.csv generados."
 *******************************************************
+
 
 
