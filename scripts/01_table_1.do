@@ -117,7 +117,7 @@ file write `fh' "Projected deaths (persons) & `D1' & `D2' & `D3' \\" _n
 * Fila 2
 file write `fh' "Projected economic losses (USD, billions) & `L1' & `L2' & `L3' \\" _n
 * Fila 3
-file write `fh' "Projected economic losses (vs. global GDP, \%) & `G1' & `G2' & `G3' \\" _n
+file write `fh' "Projected economic losses (vs. global GGHED, \%) & `G1' & `G2' & `G3' \\" _n
 file write `fh' "\addlinespace \multicolumn{4}{l}{\textit{Benchmark comparisons}} \\" _n
 * Fila 4
 file write `fh' "Projected deaths vs. 2008 premature deaths (\%) & `R1' & `R2' & `R3' \\" _n
@@ -130,6 +130,7 @@ file close `fh'
 
 di as result "Table1.tex y table1_values.csv generados."
 *******************************************************
+
 
 
 
