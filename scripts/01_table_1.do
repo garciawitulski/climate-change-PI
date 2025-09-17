@@ -56,7 +56,7 @@ gen losses_bil = totecost/1e9
 * Benchmarks (constantes del manuscrito)
 scalar BASE_DEATHS_2008 = 5.3e6
 scalar BASE_LOSS_2013   = 13.7e9
-scalar BASE_GGHED       = 21218463744
+scalar BASE_GGHED       = 5.65e12
 
 gen deaths_vs2008 = 100 * totdeathspi / BASE_DEATHS_2008
 gen loss_vs2013   = 100 * totecost   / BASE_LOSS_2013
@@ -130,6 +130,7 @@ file close `fh'
 
 di as result "Table1.tex y table1_values.csv generados."
 *******************************************************
+
 
 
 
