@@ -72,11 +72,11 @@ foreach dep of local outcomes {
         quietly summarize d5_`ssp'
         local w5 = r(mean)
 
-        * Weighted combination of bin coefficients (post so we can read e(b), e(V) if needed)
+        * Weighted combination of bin coefficients
         quietly lincom `w2'*total_bin_2_tmean + `w3'*total_bin_3_tmean + ///
-                        `w4'*total_bin_4_tmean + `w5'*total_bin_5_tmean, post
-        local b   = _b[lincom]
-        local se  = _se[lincom]
+        `w4'*total_bin_4_tmean + `w5'*total_bin_5_tmean
+        local b   = r(estimate)
+        local se  = r(se)
         local t   = abs(`b')/`se'
 
         post `H' ("`dep'") ("`ssp'") (`b') (`se') (`t')
@@ -102,7 +102,7 @@ export delimited using "outputs/derived/linear_combinations_global.csv", replace
 preserve
 keep dep ssp b se ci_low ci_high star
 gen cell = string(b, "%9.3f") + star + " \, [" + string(ci_low, "%9.3f") + ", " + string(ci_high, "%9.3f") + "]"
-reshape wide cell, i(dep) j(ssp) string
+reshape wide cell b se ci_low ci_high, i(dep) j(ssp) string
 tempname fh
 file open `fh' using "outputs/tables/supplementary/Table_S9.tex", write replace
 file write `fh' "\begin{table}[H]" _n "\centering" _n
@@ -112,10 +112,11 @@ file write `fh' " & SSP1-2.6 & SSP2-4.5 & SSP5-8.5 \\" _n "\midrule" _n
 
 levelsof dep, local(deps)
 foreach d of local deps {
-    file write `fh' "`d' & " ///
-        =cellssp126[dep=="`d'"] " & " ///
-        =cellssp245[dep=="`d'"] " & " ///
-        =cellssp585[dep=="`d'"] " \\" _n
+    quietly levelsof cellssp126 if dep=="`d'", local(c126) clean
+    quietly levelsof cellssp245 if dep=="`d'", local(c245) clean
+    quietly levelsof cellssp585 if dep=="`d'", local(c585) clean
+    
+    file write `fh' "`d' & `c126' & `c245' & `c585' \\" _n
 }
 
 file write `fh' "\bottomrule" _n "\end{tabular}" _n
@@ -125,8 +126,14 @@ file close `fh'
 restore
 
 * ========== 3) TABLE S10 — Country-level combinations (PI0) ==========
-* Re-use current data in memory. Run single global model for PI0:
-quietly areg PI0 `bins' `controls' `trendvar' `socioecon', absorb(objectid) vce(cluster objectid)
+import delimited "data/processed/processed_data.csv", clear varn(1) encoding(UTF-8)
+
+capture confirm variable año
+if !_rc {
+    xtset objectid año
+}
+
+quietly areg pi0 `bins' `controls' `trendvar' `socioecon', absorb(objectid) vce(cluster objectid)
 matrix b = e(b)
 matrix V = e(V)
 
@@ -146,20 +153,20 @@ postfile `H2' str6 ssp double(objectid) double(b se t) using "`byctry'", replace
 levelsof objectid, local(ids)
 foreach c of local ids {
     foreach ssp of local ssp_list {
-        quietly summarize D2_`ssp' if objectid==`c'
+        quietly summarize d2_`ssp' if objectid==`c'
         local w2 = r(mean)
-        quietly summarize D3_`ssp' if objectid==`c'
+        quietly summarize d3_`ssp' if objectid==`c'
         local w3 = r(mean)
-        quietly summarize D4_`ssp' if objectid==`c'
+        quietly summarize d4_`ssp' if objectid==`c'
         local w4 = r(mean)
-        quietly summarize D5_`ssp' if objectid==`c'
+        quietly summarize d5_`ssp' if objectid==`c'
         local w5 = r(mean)
 
-        * lincom using the currently active e(b), e(V)
+        * lincom SIN la opción post
         quietly lincom `w2'*total_bin_2_tmean + `w3'*total_bin_3_tmean + ///
-                        `w4'*total_bin_4_tmean + `w5'*total_bin_5_tmean, post
-        local cb = _b[lincom]
-        local cs = _se[lincom]
+                        `w4'*total_bin_4_tmean + `w5'*total_bin_5_tmean
+        local cb = r(estimate)
+        local cs = r(se)
         local ct = abs(`cb')/`cs'
         post `H2' ("`ssp'") (`c') (`cb') (`cs') (`ct')
     }
@@ -218,15 +225,25 @@ file write `fh2' " & Min & P25 & Median & P75 & Max & N & \% Sig. + & \% Sig. - 
 levelsof ssp, local(ssps)
 foreach s of local ssps {
     local lab = cond("`s'"=="ssp126","SSP1-2.6", cond("`s'"=="ssp245","SSP2-4.5","SSP5-8.5"))
-    file write `fh2' "`lab' & " ///
-        =string(min,    "%9.3f") " & " ///
-        =string(p25,    "%9.3f") " & " ///
-        =string(p50,    "%9.3f") " & " ///
-        =string(p75,    "%9.3f") " & " ///
-        =string(max,    "%9.3f") " & " ///
-        =string(N,      "%9.0f") " & " ///
-        =string(100*share_sigpos, "%9.1f") "\% & " ///
-        =string(100*share_signeg, "%9.1f") "\% \\" _n if ssp=="`s'"
+    
+    quietly summarize min if ssp=="`s'", meanonly
+    local v_min : display %9.3f r(mean)
+    quietly summarize p25 if ssp=="`s'", meanonly
+    local v_p25 : display %9.3f r(mean)
+    quietly summarize p50 if ssp=="`s'", meanonly
+    local v_p50 : display %9.3f r(mean)
+    quietly summarize p75 if ssp=="`s'", meanonly
+    local v_p75 : display %9.3f r(mean)
+    quietly summarize max if ssp=="`s'", meanonly
+    local v_max : display %9.3f r(mean)
+    quietly summarize N if ssp=="`s'", meanonly
+    local v_N : display %9.0f r(mean)
+    quietly summarize share_sigpos if ssp=="`s'", meanonly
+    local v_pos : display %9.1f 100*r(mean)
+    quietly summarize share_signeg if ssp=="`s'", meanonly
+    local v_neg : display %9.1f 100*r(mean)
+    
+    file write `fh2' "`lab' & `v_min' & `v_p25' & `v_p50' & `v_p75' & `v_max' & `v_N' & `v_pos'\% & `v_neg'\% \\" _n
 }
 file write `fh2' "\bottomrule" _n "\end{tabular}" _n
 file write `fh2' "\begin{minipage}{0.95\textwidth}\footnotesize\textit{Notes:} Effects computed as linear combinations of bin coefficients (from a fully-adjusted FE model) weighted by SSP-specific means of $D2$--$D5$. Standard errors from the linear combination delta method; significance uses normal critical values. The full country-by-country table is provided as CSV in the repository." _n
@@ -236,5 +253,6 @@ restore
 
 di as result "Done: Table_S9.tex, Table_S10.tex, and the two CSVs were written to outputs/."
 *******************************************************
+
 
 
