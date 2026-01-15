@@ -35,18 +35,18 @@ else {
 }
 
 * ========== 1) Locals and checks ==========
-local outcomes  "PI0 PI1 PI2"   // both sexes, men, women
+local outcomes  "pi0 pi1 pi2"   // both sexes, men, women
 local bins      "total_bin_2_tmean total_bin_3_tmean total_bin_4_tmean total_bin_5_tmean"
 local controls  "precipitation_weighted cld_weighted frs_weighted vap_weighted wet_weighted"
-local socioecon "lnGDPpc deathr lnpm25"
+local socioecon "lngdppc deathr lnpm25"
 local ssp_list  "ssp126 ssp245 ssp585"
 
-* Check SSP indicator variables exist (D2..D5 for each SSP)
+* Check SSP indicator variables exist (d2..d5 for each SSP)
 foreach ssp of local ssp_list {
     foreach d in 2 3 4 5 {
-        capture confirm variable D`d'_`ssp'
+        capture confirm variable d`d'_`ssp'
         if _rc {
-            di as error "Missing variable: D`d'_`ssp'. Please ensure SSP indicators exist."
+            di as error "Missing variable: d`d'_`ssp'. Please ensure SSP indicators exist."
             * exit 198
         }
     }
@@ -63,13 +63,13 @@ foreach dep of local outcomes {
 
     * Compute global means of D2..D5 for each SSP and the weighted linear combo
     foreach ssp of local ssp_list {
-        quietly summarize D2_`ssp'
+        quietly summarize d2_`ssp'
         local w2 = r(mean)
-        quietly summarize D3_`ssp'
+        quietly summarize d3_`ssp'
         local w3 = r(mean)
-        quietly summarize D4_`ssp'
+        quietly summarize d4_`ssp'
         local w4 = r(mean)
-        quietly summarize D5_`ssp'
+        quietly summarize d5_`ssp'
         local w5 = r(mean)
 
         * Weighted combination of bin coefficients (post so we can read e(b), e(V) if needed)
@@ -236,4 +236,5 @@ restore
 
 di as result "Done: Table_S9.tex, Table_S10.tex, and the two CSVs were written to outputs/."
 *******************************************************
+
 
