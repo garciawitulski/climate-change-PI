@@ -1,0 +1,8 @@
+data/raw/*
+!data/raw/shapefiles/
+!data/raw/shapefiles/**/
+!data/raw/shapefiles/**/*.md
+!data/raw/shapefiles/**/.gitkeep
+outputs/*
+!outputs/.gitkeep
+.DS_Store
