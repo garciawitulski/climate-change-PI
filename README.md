@@ -18,7 +18,6 @@ climate-change-PI/
 │   └── processed/
 │       ├── processed_data.csv              # Main panel dataset (156 countries, 2000-2022)
 │       ├── mortality_costs.csv             # Mortality and economic cost estimates
-│       └── estimates_by_country.csv        # Country-level PI estimates by SSP scenario
 ├── outputs/
 │   ├── logs/                               # Stata log files
 │   ├── tables/
@@ -29,7 +28,6 @@ climate-change-PI/
 │   │       ├── coefficients_for_figures_PI0.csv
 │   │       ├── coefficients_for_figures_PI1.csv
 │   │       └── coefficients_for_figures_PI2.csv
-│   └── figures/                            # Figure outputs (PDF, TIFF, JPEG)
 └── scripts/
     ├── 00_config.do                        # Stata configuration
     ├── 01_table_1.do                       # Table 1: Main results
