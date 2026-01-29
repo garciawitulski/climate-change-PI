@@ -113,6 +113,8 @@ foreach y in pi0 pi1 pi2 {
     matrix b = e(b)
     matrix V = e(V)
 
+    preserve  
+
     clear
     set obs 5
     gen bin      = _n
@@ -129,5 +131,7 @@ foreach y in pi0 pi1 pi2 {
     }
 
     export delimited using "outputs/derived/coefficients/coefficients_for_figures_`y'.csv", replace
+    restore  
+
 }
 *******************************************************
