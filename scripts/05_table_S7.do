@@ -24,16 +24,6 @@ if "`trendvar'"=="" {
     * exit 198
 }
 
-* Optional panel declaration (if you want)
-capture confirm variable año
-if !_rc {
-    xtset objectid año
-}
-else {
-    capture confirm variable year
-    if !_rc xtset objectid year
-}
-
 * 2) Locals: regressors
 local bins      "total_bin_2_tmean total_bin_3_tmean total_bin_4_tmean total_bin_5_tmean"
 local controls  "precipitation_weighted cld_weighted frs_weighted vap_weighted wet_weighted"
@@ -110,5 +100,6 @@ esttab m1 m2 m3 m4 m5 using "outputs/tables/supplementary/Table_S7.tex", replace
     prehead("\begin{table}[H]\n\centering\n\caption{Leave-one-region-out robustness — Outcome: Age-standardized physical inactivity (PI0), 2000–2022}\n\begin{tabular}{lccccc}\n\toprule") ///
     prefoot("\midrule") ///
     postfoot("\bottomrule\n\\end{tabular}\n\\begin{minipage}{0.95\\textwidth}\n\\footnotesize\\textit{Notes:} Fully adjusted country fixed-effects models with country-specific linear trends; standard errors clustered by country. Each column excludes one region from the sample. Significance: * p<0.10, ** p<0.05, *** p<0.01.\n\\end{minipage}\n\\end{table}")
+
 
 
