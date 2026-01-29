@@ -25,24 +25,14 @@ if "`trendvar'"=="" {
     * exit 198
 }
 
-* Optional panel declaration
-capture confirm variable año
-if !_rc {
-    xtset objectid año
-}
-else {
-    capture confirm variable year
-    if !_rc xtset objectid year
-}
-
-* 2) Income groups (robusto a tipo/etiquetas)
+* 2) Income groups 
 capture confirm variable income_grp
 if _rc {
     di as error "Variable income_grp not found. Please adjust to your income variable."
     * exit 198
 }
 
-* Crear versión string (si income_grp es numérica etiquetada)
+* String income 
 capture confirm string variable income_grp
 if _rc {
     tempvar _incstr
@@ -52,13 +42,13 @@ else {
     local _incstr income_grp
 }
 
-* Definir condiciones:
-* HIC: "High income: OECD" o "High income: nonOECD"
+* Define conditions:
+* HIC: "High income: OECD" or "High income: nonOECD"
 * LMIC: "Upper middle income", "Lower middle income", "Low income"
 local hic_cond  inlist(`_incstr', "1. High income: OECD", "2. High income: nonOECD")
 local lmic_cond inlist(`_incstr', "3. Upper middle income", "4. Lower middle income", "5. Low income")
 
-* 2b) Asegurar variable para FE/cluster sea numérica
+* 2b) Numeric variable for FE/cluster
 capture confirm numeric variable objectid
 if _rc {
     encode objectid, gen(objectid_num)
@@ -117,5 +107,6 @@ esttab m_lmic m_hic using "outputs/tables/supplementary/Table_S6.tex", replace /
     prehead("\begin{table}[H]\n\centering\n\caption{Results by income group — Outcome: Age-standardized physical inactivity (pi0), 2000–2022}\n\begin{tabular}{lcc}\n\toprule") ///
     prefoot("\midrule") ///
     postfoot("\bottomrule\n\\end{tabular}\n\\begin{minipage}{0.95\\textwidth}\n\\footnotesize\\textit{Notes:} Fully adjusted country fixed-effects models with country-specific linear trends; standard errors clustered by country. LMICs include lower-middle, upper-middle, and low-income categories; HICs include high-income (OECD and nonOECD). Significance: * p<0.10, ** p<0.05, *** p<0.01.\n\\end{minipage}\n\\end{table}")
+
 
 
