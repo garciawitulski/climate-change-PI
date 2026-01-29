@@ -24,16 +24,6 @@ if "`trendvar'"=="" {
     * exit 198
 }
 
-* Optional panel declaration
-capture confirm variable año
-if !_rc {
-    xtset objectid año
-}
-else {
-    capture confirm variable year
-    if !_rc xtset objectid year
-}
-
 * ========== 1) Locals and checks ==========
 local outcomes  "pi0 pi1 pi2"   // both sexes, men, women
 local bins      "total_bin_2_tmean total_bin_3_tmean total_bin_4_tmean total_bin_5_tmean"
@@ -253,6 +243,7 @@ restore
 
 di as result "Done: Table_S11.tex, Table_S12.tex, and the two CSVs were written to outputs/."
 *******************************************************
+
 
 
 
