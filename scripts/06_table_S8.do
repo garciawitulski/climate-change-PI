@@ -26,16 +26,6 @@ if "`trendvar'"=="" {
     * exit 198
 }
 
-* Optional xtset (robust to Spanish/English 'year')
-capture confirm variable año
-if !_rc {
-    xtset objectid año
-}
-else {
-    capture confirm variable year
-    if !_rc xtset objectid year
-}
-
 * 2) Controls and covariates
 local controls   "precipitation_weighted cld_weighted frs_weighted vap_weighted wet_weighted"
 local socioecon  "lnGDPpc deathr lnpm25"
@@ -203,4 +193,5 @@ foreach S in pct eq sd {
 use `coef_all', clear
 export delimited using "outputs/derived/coefficients/coefficients_for_figures_bins.csv", replace
 *******************************************************
+
 
